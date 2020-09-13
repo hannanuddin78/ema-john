@@ -3,7 +3,7 @@ import './Cart.css';
 
 const Cart = (props) => {
     const cart = props.cart;
-    const total = cart.reduce((total, prd) => total + prd.price , 0);
+    const total = cart.reduce((total, prd) => total + (prd.price * prd.quantity) , 0);
 
     const shipping = cart.reduce((shipping, prd) => shipping + prd.shipping , 0);
 
@@ -26,6 +26,8 @@ const Cart = (props) => {
             <p>Total before tax : ${formatNumber(totalTax)}</p>
             <p>Estimated Tax : ${formatNumber(estimatedTax)}</p>
             <h5>Order Total : ${formatNumber(orderTotal)}</h5>
+            <br/>
+            { props.children }
         </div>
     );
 };
