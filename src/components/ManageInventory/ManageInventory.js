@@ -1,11 +1,20 @@
-import React from 'react';
+import React from "react";
+import fakeData from "../../fakeData";
 
 const ManageInventory = () => {
-    return (
-        <div>
-            <h1>Inventory is comming soon</h1>
-        </div>
-    );
+  const handleAddProductBtn = () => {
+    fetch("https://safe-harbor-53165.herokuapp.com/addProduct", {
+      method: "POST",
+      headers: { "content-Type": "application/json" },
+      body: JSON.stringify(fakeData),
+    });
+  };
+
+  return (
+    <div>
+      <button onClick={handleAddProductBtn}>Add Product</button>
+    </div>
+  );
 };
 
 export default ManageInventory;
