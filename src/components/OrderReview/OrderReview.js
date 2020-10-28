@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./OrderReview.css";
 import { useState } from "react";
 import { useEffect } from "react";
@@ -11,12 +11,17 @@ import ReviewItems from "../ReviewItems/ReviewItems";
 import Cart from "../Cart/Cart";
 import happyImg from "../../images/giphy.gif";
 import { useHistory } from "react-router-dom";
+import { UserContext } from "../../App";
 
 const OrderReview = () => {
+  const [loggedInUser, setLoggedInUser] = useContext(UserContext);
+  console.log(loggedInUser.cart);
   const [cart, setCart] = useState([]);
+  // console.log(cart);
   const history = useHistory();
 
   const [orderPlace, setOrderPlace] = useState(false);
+
   const handelProcessOrder = () => {
     history.push("/shipment");
   };

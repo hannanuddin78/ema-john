@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import "./Shop.css";
 import Product from "../Product/Product";
 import Cart from "../Cart/Cart";
@@ -8,11 +8,14 @@ import {
 } from "../../utilities/databaseManager";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
+import { UserContext } from "../../App";
 
 const Shop = () => {
   const [products, setProducts] = useState([]);
 
   const [cart, setCart] = useState([]);
+
+  const [loggedInUser, setLoggedInUser] = useContext(UserContext);
 
   useEffect(() => {
     fetch("https://safe-harbor-53165.herokuapp.com/products")
@@ -47,6 +50,7 @@ const Shop = () => {
       newCart = [...cart, product];
     }
     setCart(newCart);
+    setLoggedInUser(newCart);
     addToDatabaseCart(product.key, count);
   };
 
